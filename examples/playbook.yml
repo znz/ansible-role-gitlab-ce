@@ -1,0 +1,19 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: no
+  tasks:
+  - name: "Install and configure the necessary dependencies"
+    apt:
+      name:
+      - curl
+      - openssh-server
+      - ca-certificates
+      - postfix
+
+- hosts: all
+  become: yes
+  roles:
+  - role: znz.gitlab-ce
+    gitlab_omnibus_config: |
+      external_url "http://gitlab.test"

@@ -1,0 +1,22 @@
+---
+# tasks file for ansible-role-gitlab-ce
+- name: "Add gitlab-ce apt key"
+  apt_key:
+    url: "https://packages.gitlab.com/gitlab/gitlab-ce/gpgkey"
+    id: "14219A96E15E78F4"
+- name: "Add apt repository of gitlab-ce"
+  apt_repository:
+    repo: "deb https://packages.gitlab.com/gitlab/gitlab-ce/{{ ansible_distribution | lower }} {{ ansible_lsb.codename }} main"
+- name: "Install gitlab-ce"
+  apt:
+    name: gitlab-ce
+  notify: reconfigure gitlab
+- name: "Update gitlab.rb"
+  template:
+    src: gitlab.rb.j2
+    dest: /etc/gitlab/gitlab.rb
+    owner: root
+    group: root
+    mode: 0600
+    validate: '/opt/gitlab/embedded/bin/ruby -c %s'
+  notify: reconfigure gitlab
