@@ -1,0 +1,8 @@
+[Unit]
+Description=Backup gitlab misc
+After=gitlab-runsvdir.service
+Requires=gitlab-runsvdir.service
+
+[Service]
+Type=oneshot
+ExecStart=/etc/gitlab/gitlab-misc-backup.sh

@@ -33,14 +33,22 @@
   - "gitlab-backup.service"
   - "gitlab-backup.timer"
 
-- name: "Install gitlab-mattermost-backup timer"
+- name: "Install gitlab-misc-backup timer"
   copy:
     src: "{{ item }}"
     dest: "/etc/systemd/system/{{ item }}"
     owner: root
     group: root
     mode: 0644
-  notify: enable a timer for gitlab-mattermost-backup
+  notify: enable a timer for gitlab-misc-backup
   with_items:
-  - "gitlab-mattermost-backup.service"
-  - "gitlab-mattermost-backup.timer"
+  - "gitlab-misc-backup.service"
+  - "gitlab-misc-backup.timer"
+- name: "Install gitlab-misc-backup script"
+  copy:
+    src: "gitlab-misc-backup.sh"
+    dest: "/etc/gitlab/gitlab-misc-backup.sh"
+    owner: root
+    group: root
+    mode: 0755
+  notify: enable a timer for gitlab-misc-backup
