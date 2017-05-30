@@ -1,5 +1,5 @@
 [Unit]
-Description=Backup gitlab
+Description=Backup gitlab mattermost
 
 [Timer]
 OnCalendar=*-*-* 2,14:00

@@ -21,19 +21,26 @@
     validate: '/opt/gitlab/embedded/bin/ruby -c %s'
   notify: reconfigure gitlab
 
-- name: "Install gitlab-backup.service"
+- name: "Install gitlab-backup timer"
   copy:
-    src: gitlab-backup.service
-    dest: "/etc/systemd/system/gitlab-backup.service"
+    src: "{{ item }}"
+    dest: "/etc/systemd/system/{{ item }}"
     owner: root
     group: root
     mode: 0644
   notify: enable a timer for gitlab-backup
-- name: "Install gitlab-backup.timer"
+  with_items:
+  - "gitlab-backup.service"
+  - "gitlab-backup.timer"
+
+- name: "Install gitlab-mattermost-backup timer"
   copy:
-    src: gitlab-backup.timer
-    dest: "/etc/systemd/system/gitlab-backup.timer"
+    src: "{{ item }}"
+    dest: "/etc/systemd/system/{{ item }}"
     owner: root
     group: root
     mode: 0644
-  notify: enable a timer for gitlab-backup
+  notify: enable a timer for gitlab-mattermost-backup
+  with_items:
+  - "gitlab-mattermost-backup.service"
+  - "gitlab-mattermost-backup.timer"

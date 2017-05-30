@@ -1,0 +1,8 @@
+[Unit]
+Description=Backup gitlab mattermost
+After=gitlab-runsvdir.service
+Requires=gitlab-runsvdir.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "/opt/gitlab/embedded/bin/pg_dump -U gitlab_mattermost -h /var/opt/gitlab/postgresql -p 5432 mattermost_production > /var/opt/gitlab/backups/mattermost_production_backup.$(date +'%s_%Y_%m_%d')"

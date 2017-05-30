@@ -8,3 +8,9 @@
     state: started
     enabled: yes
     daemon_reload: yes
+- name: enable a timer for gitlab-mattermost-backup
+  systemd:
+    name: gitlab-mattermost-backup.timer
+    state: started
+    enabled: yes
+    daemon_reload: yes
