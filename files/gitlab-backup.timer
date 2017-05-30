@@ -1,0 +1,11 @@
+[Unit]
+Description=Backup gitlab
+
+[Timer]
+OnCalendar=*-*-* 2,14:00
+RandomizedDelaySec=3600
+AccuracySec=1h
+Persistent=true
+
+[Install]
+WantedBy=timers.target

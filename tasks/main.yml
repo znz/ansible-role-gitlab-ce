@@ -20,3 +20,20 @@
     mode: 0600
     validate: '/opt/gitlab/embedded/bin/ruby -c %s'
   notify: reconfigure gitlab
+
+- name: "Install gitlab-backup.service"
+  copy:
+    src: gitlab-backup.service
+    dest: "/etc/systemd/system/gitlab-backup.service"
+    owner: root
+    group: root
+    mode: 0644
+  notify: enable a timer for gitlab-backup
+- name: "Install gitlab-backup.timer"
+  copy:
+    src: gitlab-backup.timer
+    dest: "/etc/systemd/system/gitlab-backup.timer"
+    owner: root
+    group: root
+    mode: 0644
+  notify: enable a timer for gitlab-backup

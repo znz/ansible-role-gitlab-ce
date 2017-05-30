@@ -1,0 +1,8 @@
+[Unit]
+Description=Backup gitlab
+After=gitlab-runsvdir.service
+Requires=gitlab-runsvdir.service
+
+[Service]
+Type=oneshot
+ExecStart=/opt/gitlab/bin/gitlab-rake gitlab:backup:create CRON=1
