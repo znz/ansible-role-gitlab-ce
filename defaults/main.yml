@@ -1,2 +1,3 @@
 ---
 # defaults file for ansible-role-gitlab-ce
+gitlab_remove_backup_options: "-mtime +30 -ls -delete"

@@ -1,0 +1,4 @@
+#!/bin/sh
+set -e
+BACKUPS=/var/opt/gitlab/backups
+find "$BACKUPS" {{ gitlab_remove_backup_options }}

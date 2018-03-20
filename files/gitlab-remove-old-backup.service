@@ -1,0 +1,6 @@
+[Unit]
+Description=Remove old backup of gitlab
+
+[Service]
+Type=oneshot
+ExecStart=/etc/gitlab/gitlab-remove-old-backup.sh

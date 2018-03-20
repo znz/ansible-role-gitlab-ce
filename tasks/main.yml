@@ -52,3 +52,23 @@
     group: root
     mode: 0755
   notify: enable a timer for gitlab-misc-backup
+
+- name: "Install gitlab-remove-old-backup timer"
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/systemd/system/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  notify: enable a timer for gitlab-remove-old-backup
+  with_items:
+  - "gitlab-remove-old-backup.service"
+  - "gitlab-remove-old-backup.timer"
+- name: "Install gitlab-remove-old-backup script"
+  template:
+    src: "gitlab-remove-old-backup.sh.j2"
+    dest: "/etc/gitlab/gitlab-remove-old-backup.sh"
+    owner: root
+    group: root
+    mode: 0755
+  notify: enable a timer for gitlab-remove-old-backup

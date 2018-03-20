@@ -1,0 +1,8 @@
+[Unit]
+Description=Remove old backup of gitlab
+
+[Timer]
+OnCalendar=*-*-* 2,14:00
+
+[Install]
+WantedBy=timers.target

@@ -14,3 +14,9 @@
     state: started
     enabled: yes
     daemon_reload: yes
+- name: enable a timer for gitlab-remove-old-backup
+  systemd:
+    name: gitlab-remove-old-backup.timer
+    state: started
+    enabled: yes
+    daemon_reload: yes
